@@ -1,9 +1,10 @@
 class YelpWrapper
   include Yelp::V2::Search::Request
 
-  def initialize(params)
+  def initialize(params, radius = 500)
     @latitude = params[:latitude]
     @longitude = params[:longitude]
+    @radius = radius
   end
 
   def search_for_bars
@@ -12,7 +13,7 @@ class YelpWrapper
 
   private
 
-  attr_reader :latitude, :longitude
+  attr_reader :latitude, :longitude, :radius
 
   def client
     Yelp::Client.new
@@ -24,7 +25,7 @@ class YelpWrapper
       longitude: longitude,
       limit: 5,
       category_filter: "nightlife,bars",
-      radius_filter: 500
+      radius_filter: radius
     )
   end
 end

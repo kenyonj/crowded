@@ -1,3 +1,5 @@
 <% @yelp_results["businesses"].each do |business| %>
-  $("#bars").append("<li><%=j business['name'] %></li>");
+  var template  = "<li><%=j link_to business['name'], business['url'] %>"
+      template += " <%=j image_tag(business['rating_img_url']) %></li>"
+  $("#bars").append(template);
 <% end %>
