@@ -1,0 +1,3 @@
+<% @yelp_results["businesses"].each do |business| %>
+  $("#bars").append("<li><%=j business['name'] %></li>");
+<% end %>
